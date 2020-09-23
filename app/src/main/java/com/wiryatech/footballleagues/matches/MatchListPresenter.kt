@@ -1,31 +1,32 @@
-package com.wiryatech.footballleagues.detail
+package com.wiryatech.footballleagues.matches
 
 import android.util.Log
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
-import com.wiryatech.footballleagues.models.LeagueResponse
+import com.wiryatech.footballleagues.models.MatchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class LeagueDetailPresenter(
-    private val view: LeagueDetailView,
+class MatchListPresenter(
+    private val view: MatchListView,
     private val apiRepository: ApiRepository,
     private val gson: Gson
 ) {
 
-    fun getLeagueDetail(id: String) {
+    fun getPrevMatch(id: String) {
         view.showLoading()
+        Log.d("Presenter", id)
 
         doAsync {
             val data = gson.fromJson(
-                apiRepository.doRequest(SportsApi.getLeagueDetail(id)),
-                LeagueResponse::class.java
+                apiRepository.doRequest(SportsApi.getPrevMatch(id)),
+                MatchResponse::class.java
             )
-
+            Log.d("Presenter", "doAsync Finish")
             uiThread {
                 view.hideLoading()
-                view.showLeagueDetail(data.leagues)
+                view.showMatchList(data.events)
             }
         }
     }

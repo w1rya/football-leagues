@@ -1,4 +1,4 @@
-package com.wiryatech.footballleagues.detail
+package com.wiryatech.footballleagues.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,8 @@ import coil.load
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.api.ApiRepository
+import com.wiryatech.footballleagues.detail.LeagueDetailPresenter
+import com.wiryatech.footballleagues.detail.LeagueDetailView
 import com.wiryatech.footballleagues.models.League
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible

@@ -1,10 +1,11 @@
-package com.wiryatech.footballleagues
+package com.wiryatech.footballleagues.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.wiryatech.footballleagues.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

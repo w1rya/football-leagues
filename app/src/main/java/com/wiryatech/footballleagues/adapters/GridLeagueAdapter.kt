@@ -17,8 +17,7 @@ class GridLeagueAdapter(
     private val listener: (League) -> Unit
 ) : RecyclerView.Adapter<GridLeagueAdapter.ViewHolder>() {
 
-    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-        LayoutContainer {
+    class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindLeague(league: League, listener: (League) -> Unit) {
             itemView.tv_name.text = league.strLeague
             league.badge?.let {
