@@ -23,10 +23,29 @@ class MatchListPresenter(
                 apiRepository.doRequest(SportsApi.getPrevMatch(id)),
                 MatchResponse::class.java
             )
-            Log.d("Presenter", "doAsync Finish")
+            Log.d("Presenter", "doAsync finish")
             uiThread {
                 view.hideLoading()
                 view.showMatchList(data.events)
+                Log.d("Presenter", "showMatchList finish")
+            }
+        }
+    }
+
+    fun getNextMatch(id: String) {
+        view.showLoading()
+        Log.d("Presenter", id)
+
+        doAsync {
+            val data = gson.fromJson(
+                apiRepository.doRequest(SportsApi.getNextMatch(id)),
+                MatchResponse::class.java
+            )
+            Log.d("Presenter", "doAsync finish")
+            uiThread {
+                view.hideLoading()
+                view.showMatchList(data.events)
+                Log.d("Presenter", "showMatchList finish")
             }
         }
     }

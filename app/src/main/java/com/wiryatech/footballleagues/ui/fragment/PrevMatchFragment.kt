@@ -2,17 +2,33 @@ package com.wiryatech.footballleagues.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
+import com.wiryatech.footballleagues.adapters.MatchAdapter
+import com.wiryatech.footballleagues.api.ApiRepository
+import com.wiryatech.footballleagues.matches.MatchListPresenter
+import com.wiryatech.footballleagues.matches.MatchListView
+import com.wiryatech.footballleagues.models.Match
+import com.wiryatech.footballleagues.utils.invisible
+import com.wiryatech.footballleagues.utils.visible
+import kotlinx.android.synthetic.main.fragment_prev_match.*
+import org.jetbrains.anko.toast
 
-class PrevMatchFragment : Fragment() {
+class PrevMatchFragment : Fragment(), MatchListView {
 
     companion object {
         const val ID = "id"
     }
+
+    private var matches: MutableList<Match> = mutableListOf()
+    private lateinit var presenter: MatchListPresenter
+    private lateinit var adapter: MatchAdapter
+    private lateinit var idLeague: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,11 +41,45 @@ class PrevMatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = MatchAdapter(matches) {
+            context?.toast(it.idEvent)
+        }
+
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = MatchListPresenter(this, request, gson)
+
+        initUI()
+
         Log.d("BundleFragment1", "$savedInstanceState, $arguments")
         if (arguments != null) {
-            val idLeague = arguments?.getString(ID)
-//            getFollower(username.toString())
+            idLeague = arguments?.getString(ID).toString()
             Log.d("Prev", "$arguments, $idLeague")
+            presenter.getPrevMatch(idLeague)
         }
+
+        swipeRefresh.setOnRefreshListener {
+            presenter.getPrevMatch(idLeague)
+        }
+    }
+
+    private fun initUI() {
+        rv_prev_match.layoutManager = LinearLayoutManager(context)
+        rv_prev_match.adapter = adapter
+    }
+
+    override fun showLoading() {
+        progressBarPrev.visible()
+    }
+
+    override fun hideLoading() {
+        progressBarPrev.invisible()
+    }
+
+    override fun showMatchList(data: List<Match>) {
+        swipeRefresh.isRefreshing = false
+        matches.clear()
+        matches.addAll(data)
+        adapter.notifyDataSetChanged()
     }
 }

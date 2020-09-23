@@ -6,7 +6,7 @@ data class Match(
     val strSeason: String,
     val strHomeTeam: String,
     val strAwayTeam: String,
-    val intHomeScore: Int,
-    val intAwayScore: Int,
+    val intHomeScore: Int? = null,
+    val intAwayScore: Int? = null,
     val strVenue: String
 )

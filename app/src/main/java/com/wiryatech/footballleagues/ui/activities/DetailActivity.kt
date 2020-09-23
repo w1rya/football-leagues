@@ -44,6 +44,7 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
             result.badge?.let { badge ->
                 iv_badge.load(badge) {
                     placeholder(R.drawable.ic_round_sports_soccer_24_white)
+                    size(120)
                 }
             }
         }

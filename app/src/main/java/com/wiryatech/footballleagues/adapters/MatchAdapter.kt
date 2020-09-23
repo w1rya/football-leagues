@@ -22,10 +22,14 @@ class MatchAdapter(
             itemView.tv_venue.text = match.strVenue
             // Home
             itemView.tv_home_name.text = match.strHomeTeam
-            itemView.tv_home_score.text = match.intHomeScore.toString()
+            if (match.intHomeScore != null) {
+                itemView.tv_home_score.text = match.intHomeScore.toString()
+            }
             // Away
             itemView.tv_away_name.text = match.strAwayTeam
-            itemView.tv_away_score.text = match.intAwayScore.toString()
+            if (match.intHomeScore != null) {
+                itemView.tv_away_score.text = match.intAwayScore.toString()
+            }
             // listener
             itemView.setOnClickListener { listener(match) }
         }

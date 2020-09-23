@@ -11,6 +11,7 @@
     <string name="_1999">1999</string>
     <string name="vs">VS</string>
     <string name="score">3</string>
+    <string name="no_score">–</string>
     <string name="home_team">Home Team</string>
     <string name="away_team">Away Team</string>
     <string name="season">2020–2021</string>
