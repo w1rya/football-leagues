@@ -3,7 +3,6 @@ package com.wiryatech.footballleagues.adapters
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -47,7 +46,6 @@ class SectionsPagerAdapter(private val mContext: Context, fragmentManager: Fragm
         return fragment as Fragment
     }
 
-    @Nullable
     override fun getPageTitle(position: Int): CharSequence? {
         return mContext.resources.getString(tabTitles[position])
     }

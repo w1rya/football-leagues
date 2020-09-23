@@ -6,6 +6,7 @@ import android.util.Log
 import coil.load
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
+import com.wiryatech.footballleagues.adapters.SectionsPagerAdapter
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.detail.LeagueDetailPresenter
 import com.wiryatech.footballleagues.detail.LeagueDetailView
@@ -36,6 +37,7 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
 
             result.idLeague?.let {
                 presenter.getLeagueDetail(it.toString())
+                initPager(it.toString())
                 Log.d("Presenter", "Send $it to Presenter")
             }
             result.strLeague?.let { tv_name.text = it }
@@ -53,7 +55,11 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
         }
     }
 
-    private fun initData(id: String) {
+    private fun initPager(id: String) {
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        sectionsPagerAdapter.setData(id)
+        vp_detail.adapter = sectionsPagerAdapter
+        tab_detail.setupWithViewPager(vp_detail)
     }
 
 
