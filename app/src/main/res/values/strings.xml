@@ -62,5 +62,9 @@
     <string name="match_thumbnail">Match Thumbnail</string>
     <string name="event">Event</string>
     <string name="date">2020–09–21</string>
+    <string name="goal_scorer">Goal Scorer</string>
+    <string name="red_card">Red Card</string>
+    <string name="yellow_card">Yellow Card</string>
+    <string name="formation">Formation</string>
 
 </resources>

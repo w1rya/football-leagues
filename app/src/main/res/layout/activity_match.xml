@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_round_arrow_back_24_green"
         android:background="@android:color/transparent"
         android:contentDescription="@string/back_button"
+        android:src="@drawable/ic_round_arrow_back_24_green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16sp"
         android:fontFamily="@font/open_sans_bold"
+        android:maxLines="1"
         android:text="@string/league_name"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        android:maxLines="1"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
@@ -38,218 +38,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/match_thumbnail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name"
-        app:srcCompat="@drawable/shape_score"
-        android:contentDescription="@string/match_thumbnail" />
-
-    <TextView
-        android:id="@+id/tv_season"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="@color/colorSoftBlack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_thumb"
-        android:text="@string/season" />
-
-    <TextView
-        android:id="@+id/tv_event"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="@string/event"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_season" />
-
-    <TextView
-        android:id="@+id/tv_home_score"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/shape_score"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftWhite"
-        android:textSize="32sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event"
-        app:layout_constraintEnd_toStartOf="@+id/tv_season"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_home_goal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_name"
-        app:layout_constraintEnd_toEndOf="@+id/tv_home_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_home_score"
-        app:drawableStartCompat="@drawable/ic_round_sports_soccer_24" />
-
-    <TextView
-        android:id="@+id/tv_home_red_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_goal"
-        app:layout_constraintEnd_toEndOf="@+id/tv_home_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_home_score"
-        app:drawableStartCompat="@drawable/ic_red_card" />
-
-    <TextView
-        android:id="@+id/tv_home_yellow_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_red_card"
-        app:layout_constraintEnd_toEndOf="@+id/tv_home_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_home_score"
-        app:drawableStartCompat="@drawable/ic_yellow_card" />
-
-    <TextView
-        android:id="@+id/tv_home_formation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_yellow_card"
-        app:layout_constraintEnd_toEndOf="@+id/tv_home_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_home_score"
-        app:drawableStartCompat="@drawable/ic_formation" />
-
-    <TextView
-        android:id="@+id/tv_away_score"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/shape_score"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftWhite"
-        android:textSize="32sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_event"
-        app:layout_constraintStart_toEndOf="@id/tv_season"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_home_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/home_team"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/tv_home_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_home_score"
-        app:layout_constraintTop_toBottomOf="@+id/tv_home_score" />
-
-
-    <TextView
-        android:id="@+id/tv_away_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/away_team"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/tv_away_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_away_score"
-        app:layout_constraintTop_toBottomOf="@+id/tv_away_score" />
-
-    <TextView
-        android:id="@+id/tv_away_goal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_away_name"
-        app:layout_constraintEnd_toEndOf="@+id/tv_away_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_away_score"
-        app:drawableStartCompat="@drawable/ic_round_sports_soccer_24" />
-
-    <TextView
-        android:id="@+id/tv_away_red_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_away_goal"
-        app:layout_constraintEnd_toEndOf="@+id/tv_away_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_away_score"
-        app:drawableStartCompat="@drawable/ic_red_card" />
-
-    <TextView
-        android:id="@+id/tv_away_yellow_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_score"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="12sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_away_red_card"
-        app:layout_constraintEnd_toEndOf="@+id/tv_away_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_away_score"
-        app:drawableStartCompat="@drawable/ic_yellow_card" />
-
-    <TextView
-        android:id="@+id/tv_away_formation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_score"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textColor="@color/colorSoftBlack"
-        android:textSize="14sp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tv_away_yellow_card"
-        app:layout_constraintEnd_toEndOf="@+id/tv_away_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_away_score"
-        app:drawableStartCompat="@drawable/ic_formation" />
+        app:srcCompat="@drawable/shape_score" />
 
     <TextView
         android:id="@+id/tv_venue"
@@ -265,15 +58,32 @@
         app:layout_constraintEnd_toEndOf="@+id/iv_thumb" />
 
     <TextView
-        android:id="@+id/tv_date"
+        android:id="@+id/tv_season"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:text="@string/date"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="@string/season"
         android:textColor="@color/colorSoftBlack"
-        app:drawableStartCompat="@drawable/ic_round_calendar_today_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_season" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_thumb" />
+
+    <TextView
+        android:id="@+id/tv_event"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="@string/event"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_season" />
 
     <ProgressBar
         android:id="@+id/progressBarMatch"
@@ -284,5 +94,327 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="@string/date"
+        android:textColor="@color/colorSoftBlack"
+        app:drawableStartCompat="@drawable/ic_round_calendar_today_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_season" />
+
+    <LinearLayout
+        android:id="@+id/ll_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_event">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/shape_score"
+                android:fontFamily="@font/open_sans_bold"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/no_score"
+                android:textAlignment="center"
+                android:textColor="@color/colorSoftWhite"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/tv_home_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/home_team"
+                android:textAlignment="center"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/open_sans_bold"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="@string/vs"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="32sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_away_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/shape_score"
+                android:fontFamily="@font/open_sans_bold"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="@string/no_score"
+                android:textAlignment="center"
+                android:textColor="@color/colorSoftWhite"
+                android:textSize="32sp" />
+
+            <TextView
+                android:id="@+id/tv_away_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/away_team"
+                android:textAlignment="center"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_summary">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_goal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_round_sports_soccer_24"
+            android:contentDescription="@string/goal_scorer" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_away_goal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_red_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_goal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_red_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_red_card"
+            android:contentDescription="@string/red_card" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_away_red_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_yellow_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_red_card">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_yellow_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_yellow_card"
+            android:contentDescription="@string/yellow_card" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_away_yellow_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_formation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_yellow_card">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_home_formation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_formation"
+            android:contentDescription="@string/formation" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_away_formation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_score"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="12sp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
