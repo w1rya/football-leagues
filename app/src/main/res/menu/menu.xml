@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/home_fragment"
         android:title="@string/home"
-        android:icon="@drawable/ic_round_home_24" />
+        android:icon="@drawable/ic_teams" />
 
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/search_fragment"
         android:title="@string/search"
         android:icon="@drawable/ic_round_search_24" />
+
+    <item
+        android:id="@+id/favorite_fragment"
+        android:title="@string/country"
+        android:icon="@drawable/ic_round_stars_24" />
 
 </menu>

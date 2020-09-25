@@ -14,9 +14,11 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.matches.MatchListPresenter
 import com.wiryatech.footballleagues.matches.MatchListView
 import com.wiryatech.footballleagues.models.Match
+import com.wiryatech.footballleagues.ui.activities.MatchActivity
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_prev_match.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
 
 class PrevMatchFragment : Fragment(), MatchListView {
@@ -27,7 +29,7 @@ class PrevMatchFragment : Fragment(), MatchListView {
 
     private var matches: MutableList<Match> = mutableListOf()
     private lateinit var presenter: MatchListPresenter
-    private lateinit var adapter: MatchAdapter
+    private lateinit var matchAdapter: MatchAdapter
     private lateinit var idLeague: String
 
     override fun onCreateView(
@@ -41,8 +43,9 @@ class PrevMatchFragment : Fragment(), MatchListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MatchAdapter(matches) {
+        matchAdapter = MatchAdapter(matches) {
             context?.toast(it.idEvent)
+            startActivity<MatchActivity>(MatchActivity.EXTRA_EVENT to it.idEvent)
         }
 
         val request = ApiRepository()
@@ -64,8 +67,10 @@ class PrevMatchFragment : Fragment(), MatchListView {
     }
 
     private fun initUI() {
-        rv_prev_match.layoutManager = LinearLayoutManager(context)
-        rv_prev_match.adapter = adapter
+        rv_prev_match.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = matchAdapter
+        }
     }
 
     override fun showLoading() {
@@ -80,6 +85,7 @@ class PrevMatchFragment : Fragment(), MatchListView {
         swipeRefresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
-        adapter.notifyDataSetChanged()
+        matchAdapter.notifyDataSetChanged()
     }
+
 }

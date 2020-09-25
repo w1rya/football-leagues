@@ -30,12 +30,14 @@
         app:tabIndicator="@drawable/tab_indicator"
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabIndicatorHeight="2dp"
+        app:tabTextAppearance="@style/TabLayoutTextFont"
         app:tabTextColor="@color/colorPrimary" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

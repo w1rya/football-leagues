@@ -2,10 +2,10 @@ package com.wiryatech.footballleagues.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
@@ -14,16 +14,18 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.matches.MatchListPresenter
 import com.wiryatech.footballleagues.matches.MatchListView
 import com.wiryatech.footballleagues.models.Match
+import com.wiryatech.footballleagues.ui.activities.MatchActivity
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_next_match.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
 
 class NextMatchFragment : Fragment(), MatchListView {
 
     private var matches: MutableList<Match> = mutableListOf()
     private lateinit var presenter: MatchListPresenter
-    private lateinit var adapter: MatchAdapter
+    private lateinit var matchAdapter: MatchAdapter
     private lateinit var idLeague: String
 
     override fun onCreateView(
@@ -37,8 +39,9 @@ class NextMatchFragment : Fragment(), MatchListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = MatchAdapter(matches) {
+        matchAdapter = MatchAdapter(matches) {
             context?.toast(it.idEvent)
+            startActivity<MatchActivity>(MatchActivity.EXTRA_EVENT to it.idEvent)
         }
 
         val request = ApiRepository()
@@ -60,8 +63,10 @@ class NextMatchFragment : Fragment(), MatchListView {
     }
 
     private fun initUI() {
-        rv_next_match.layoutManager = LinearLayoutManager(context)
-        rv_next_match.adapter = adapter
+        rv_next_match.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = matchAdapter
+        }
     }
 
     override fun showLoading() {
@@ -76,6 +81,7 @@ class NextMatchFragment : Fragment(), MatchListView {
         swipeRefresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
-        adapter.notifyDataSetChanged()
+        matchAdapter.notifyDataSetChanged()
     }
+
 }

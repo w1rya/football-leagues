@@ -1,7 +1,7 @@
 package com.wiryatech.footballleagues.ui.activities
 
 import android.os.Bundle
-import android.view.Menu
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -17,17 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.nav_host_fragment)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        bottomBar.setupWithNavController(menu!!,navController)
-        return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        navController.navigateUp()
-        return true
+        val menu = PopupMenu(this,null).menu
+        menuInflater.inflate(R.menu.menu, menu)
+        bottomBar.setupWithNavController(menu, navController)
     }
 
 }

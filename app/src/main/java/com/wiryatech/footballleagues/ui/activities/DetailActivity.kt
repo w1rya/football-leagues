@@ -1,8 +1,7 @@
 package com.wiryatech.footballleagues.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
@@ -34,11 +33,9 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
         presenter = LeagueDetailPresenter(this, request, gson)
 
         intent.getParcelableExtra<League>(EXTRA_LEAGUE)?.let { result ->
-
             result.idLeague?.let {
                 presenter.getLeagueDetail(it.toString())
                 initPager(it.toString())
-                Log.d("Presenter", "Send $it to Presenter")
             }
             result.strLeague?.let { tv_name.text = it }
             result.badge?.let { badge ->
@@ -73,9 +70,9 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
     }
 
     override fun showLeagueDetail(data: List<League>) {
-        Log.d("Presenter", "Presenter finish")
         tv_gender.text = data[0].strGender
         tv_country.text = data[0].strCountry
         tv_year.text = data[0].intFormedYear.toString()
     }
+
 }
