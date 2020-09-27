@@ -19,7 +19,6 @@ import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 
 class SearchFragment : Fragment(), MatchListView {
@@ -77,13 +76,19 @@ class SearchFragment : Fragment(), MatchListView {
 
     override fun hideLoading() {
         progressBarSearch.invisible()
-        toast(R.string.no_connection)
     }
 
     override fun showMatchList(data: List<Match>) {
+        iv_error.invisible()
+        tv_error.invisible()
         matches.clear()
         matches.addAll(data)
         matchAdapter.notifyDataSetChanged()
+    }
+
+    override fun showNoData() {
+        iv_error.visible()
+        tv_error.visible()
     }
 
 }

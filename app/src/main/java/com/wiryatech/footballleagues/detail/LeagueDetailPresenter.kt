@@ -28,7 +28,8 @@ class LeagueDetailPresenter(
                 )
             } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
-                view.hideLoading()
+                view.showNoConnection()
+                Log.d("Presenter", "getLeagueDetail: No Connection")
             }
 
             uiThread {

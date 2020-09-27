@@ -6,4 +6,5 @@ interface LeagueDetailView {
     fun showLoading()
     fun hideLoading()
     fun showLeagueDetail(data: List<League>)
+    fun showNoConnection()
 }

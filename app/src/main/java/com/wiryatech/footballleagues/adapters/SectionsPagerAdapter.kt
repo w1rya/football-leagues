@@ -46,13 +46,9 @@ class SectionsPagerAdapter(private val mContext: Context, fragmentManager: Fragm
         return fragment as Fragment
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return mContext.resources.getString(tabTitles[position])
-    }
+    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(tabTitles[position])
 
-    override fun getCount(): Int {
-        return 2
-    }
+    override fun getCount(): Int = tabTitles.size
 
     fun setData(id: String) {
         this.id = id

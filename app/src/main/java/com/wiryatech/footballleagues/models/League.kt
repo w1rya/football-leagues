@@ -9,6 +9,6 @@ data class League (
     var strLeague: String? = null,
     var badge: Int? = 0,
     var intFormedYear: Int? = 0,
-    var strGender: String? = null,
+    var dateFirstEvent: String? = null,
     var strCountry: String? = null
 ) : Parcelable

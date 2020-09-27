@@ -8,6 +8,7 @@ import com.wiryatech.footballleagues.models.MatchResponse
 import com.wiryatech.footballleagues.models.SearchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import java.net.UnknownHostException
 
 class MatchListPresenter(
     private val view: MatchListView,
@@ -27,7 +28,7 @@ class MatchListPresenter(
                     apiRepository.doRequest(SportsApi.getPrevMatch(id)),
                     MatchResponse::class.java
                 )
-            } catch (e: Exception) {
+            } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
                 view.hideLoading()
             }
@@ -39,6 +40,7 @@ class MatchListPresenter(
                 } catch (e: UninitializedPropertyAccessException) {
                     Log.d("Presenter", "$e")
                     view.hideLoading()
+                    view.showNoData()
                 }
             }
         }
@@ -53,7 +55,7 @@ class MatchListPresenter(
                     apiRepository.doRequest(SportsApi.getNextMatch(id)),
                     MatchResponse::class.java
                 )
-            } catch (e: Exception) {
+            } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
                 view.hideLoading()
             }
@@ -62,9 +64,10 @@ class MatchListPresenter(
                 try {
                     view.hideLoading()
                     data.events?.let { event -> view.showMatchList(event) }
-                } catch (e: UninitializedPropertyAccessException) {
+                } catch (e: Exception) {
                     Log.d("Presenter", "$e")
                     view.hideLoading()
+                    view.showNoData()
                 }
             }
         }
@@ -80,7 +83,7 @@ class MatchListPresenter(
                     apiRepository.doRequest(SportsApi.searchMatch(e)),
                     SearchResponse::class.java
                 )
-            } catch (e: Exception) {
+            } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
                 view.hideLoading()
             }
@@ -91,9 +94,10 @@ class MatchListPresenter(
                     view.hideLoading()
                     view.showMatchList(dataSearch.event)
                     Log.d("Presenter", "showMatchList finish")
-                } catch (e: NullPointerException) {
+                } catch (e: Exception) {
                     Log.d("Presenter", "$e")
                     view.hideLoading()
+                    view.showNoData()
                 }
             }
         }

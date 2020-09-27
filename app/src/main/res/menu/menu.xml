@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/favorite_fragment"
-        android:title="@string/country"
+        android:title="@string/favorite"
         android:icon="@drawable/ic_round_stars_24" />
 
 </menu>

@@ -54,9 +54,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation "org.jetbrains.anko:anko:0.10.8"
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+    implementation "org.jetbrains.anko:anko-design:$anko_version"
 
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation "io.coil-kt:coil:0.13.0"
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
 }

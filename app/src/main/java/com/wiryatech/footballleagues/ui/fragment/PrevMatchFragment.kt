@@ -82,10 +82,17 @@ class PrevMatchFragment : Fragment(), MatchListView {
     }
 
     override fun showMatchList(data: List<Match>) {
+        iv_error.invisible()
+        tv_error.invisible()
         swipeRefresh.isRefreshing = false
         matches.clear()
         matches.addAll(data)
         matchAdapter.notifyDataSetChanged()
+    }
+
+    override fun showNoData() {
+        iv_error.visible()
+        tv_error.visible()
     }
 
 }

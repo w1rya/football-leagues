@@ -1,6 +1,7 @@
 package com.wiryatech.footballleagues.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.google.gson.Gson
@@ -13,6 +14,7 @@ import com.wiryatech.footballleagues.models.League
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.toast
 
 class DetailActivity : AppCompatActivity(), LeagueDetailView {
 
@@ -41,7 +43,6 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
             result.badge?.let { badge ->
                 iv_badge.load(badge) {
                     placeholder(R.drawable.ic_round_sports_soccer_24_white)
-                    size(120)
                 }
             }
         }
@@ -70,9 +71,15 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
     }
 
     override fun showLeagueDetail(data: List<League>) {
-        tv_gender.text = data[0].strGender
+        tv_first_event.text = data[0].dateFirstEvent
         tv_country.text = data[0].strCountry
         tv_year.text = data[0].intFormedYear.toString()
+    }
+
+    override fun showNoConnection() {
+        progressBar.invisible()
+        toast(R.string.no_connection)
+        Log.d("Presenter", "showNoConnection: ")
     }
 
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/shape_bg_green"
     tools:context=".ui.activities.DetailActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -76,7 +76,7 @@
         android:text="@string/league_name"
         android:textColor="@color/colorSoftWhite"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_gender"
+        app:layout_constraintEnd_toEndOf="@+id/tv_first_event"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
@@ -97,7 +97,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/open_sans_semibold"
-        android:text="@string/gender"
+        android:text="@string/first_match"
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/iv_badge"
@@ -158,7 +158,7 @@
         tools:text="@string/country" />
 
     <TextView
-        android:id="@+id/tv_gender"
+        android:id="@+id/tv_first_event"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -170,6 +170,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        tools:text="@string/gender" />
+        tools:text="@string/first_match" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

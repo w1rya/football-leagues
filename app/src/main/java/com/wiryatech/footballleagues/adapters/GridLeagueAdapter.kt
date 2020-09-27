@@ -23,7 +23,6 @@ class GridLeagueAdapter(
             league.badge?.let {
                 itemView.iv_badge.load(it) {
                     placeholder(R.drawable.ic_round_sports_soccer_24)
-                    size(120)
                 }
             }
             itemView.setOnClickListener { listener(league) }
