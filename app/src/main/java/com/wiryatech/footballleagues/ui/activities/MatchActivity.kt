@@ -71,48 +71,15 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
     }
 
     private fun setFavState() {
-        try {
-            db.use {
-                val result = select(Favorite.TABLE_FAVORITE)
-                    .whereArgs("(EVENT_ID = {id})", "id" to idEvent)
-                val favorite = result.parseList(classParser<Favorite>())
-                if (favorite.isNotEmpty()) isFavorite = true
-            }
-        } catch (e: SQLiteConstraintException) {
-            Log.d("setFavState: ", e.message.toString())
-        }
+        isFavorite = presenter.setFavState(this, idEvent)
     }
 
     private fun addToFav() {
-        try {
-            db.use {
-                insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.EVENT_ID to match.idEvent,
-                    Favorite.EVENT_NAME to match.strEvent,
-                    Favorite.EVENT_DATE to match.dateEvent,
-                    Favorite.LEAGUE_NAME to match.strLeague
-                )
-            }
-            swipeRefresh.snackbar(R.string.add_fav).show()
-        } catch (e: SQLiteConstraintException){
-            e.localizedMessage?.toString()?.let { swipeRefresh.snackbar(it).show() }
-        }
+        presenter.addToFav(this, match)
     }
 
     private fun delFromFav() {
-        try {
-            db.use {
-                delete(
-                    Favorite.TABLE_FAVORITE,
-                    "(EVENT_ID = {id})",
-                    "id" to idEvent
-                )
-            }
-            swipeRefresh.snackbar(R.string.del_fav).show()
-        } catch (e: SQLiteConstraintException){
-            e.localizedMessage?.toString()?.let { swipeRefresh.snackbar(it).show() }
-        }
+        presenter.delFromFav(this, idEvent)
     }
 
     private fun setFavIcon() {
@@ -129,6 +96,10 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
 
     override fun hideLoading() {
         progressBarMatch.invisible()
+    }
+
+    override fun showSnackBar(message: String) {
+        swipeRefresh.snackbar(message).show()
     }
 
     override fun showMatchDetail(data: List<DetailMatch>) {

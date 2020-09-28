@@ -2,6 +2,7 @@ package com.wiryatech.footballleagues.ui.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.google.gson.Gson
@@ -14,6 +15,7 @@ import com.wiryatech.footballleagues.models.League
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 
 class DetailActivity : AppCompatActivity(), LeagueDetailView {
@@ -78,7 +80,7 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
 
     override fun showNoConnection() {
         progressBar.invisible()
-        toast(R.string.no_connection)
+        tv_error.visible()
         Log.d("Presenter", "showNoConnection: ")
     }
 

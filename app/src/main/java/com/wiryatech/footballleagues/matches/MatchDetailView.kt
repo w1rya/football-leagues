@@ -6,4 +6,5 @@ interface MatchDetailView {
     fun showLoading()
     fun hideLoading()
     fun showMatchDetail(data: List<DetailMatch>)
+    fun showSnackBar(message: String)
 }
