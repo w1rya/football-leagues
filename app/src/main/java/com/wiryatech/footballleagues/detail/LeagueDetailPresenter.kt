@@ -5,8 +5,9 @@ import com.google.gson.Gson
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
 import com.wiryatech.footballleagues.models.LeagueResponse
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
 class LeagueDetailPresenter(
@@ -20,19 +21,13 @@ class LeagueDetailPresenter(
     fun getLeagueDetail(id: String) {
         view.showLoading()
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 data = gson.fromJson(
-                    apiRepository.doRequest(SportsApi.getLeagueDetail(id)),
+                    apiRepository.doRequestAsync(SportsApi.getLeagueDetail(id)).await(),
                     LeagueResponse::class.java
                 )
-            } catch (e: UnknownHostException) {
-                Log.d("Presenter Connection", "$e")
-                view.showNoConnection()
-                Log.d("Presenter", "getLeagueDetail: No Connection")
-            }
 
-            uiThread {
                 try {
                     view.hideLoading()
                     view.showLeagueDetail(data.leagues)
@@ -40,6 +35,10 @@ class LeagueDetailPresenter(
                     Log.d("Presenter", "$e")
                     view.hideLoading()
                 }
+            } catch (e: UnknownHostException) {
+                Log.d("Presenter Connection", "$e")
+                view.showNoConnection()
+                Log.d("Presenter", "getLeagueDetail: No Connection")
             }
         }
     }

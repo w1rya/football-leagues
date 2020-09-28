@@ -6,8 +6,9 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
 import com.wiryatech.footballleagues.models.MatchResponse
 import com.wiryatech.footballleagues.models.SearchResponse
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
 class MatchListPresenter(
@@ -22,18 +23,13 @@ class MatchListPresenter(
     fun getPrevMatch(id: String) {
         view.showLoading()
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 data = gson.fromJson(
-                    apiRepository.doRequest(SportsApi.getPrevMatch(id)),
+                    apiRepository.doRequestAsync(SportsApi.getPrevMatch(id)).await(),
                     MatchResponse::class.java
                 )
-            } catch (e: UnknownHostException) {
-                Log.d("Presenter Connection", "$e")
-                view.hideLoading()
-            }
 
-            uiThread {
                 try {
                     view.hideLoading()
                     data.events?.let { event -> view.showMatchList(event) }
@@ -42,6 +38,10 @@ class MatchListPresenter(
                     view.hideLoading()
                     view.showNoData()
                 }
+            } catch (e: UnknownHostException) {
+                Log.d("Presenter Connection", "$e")
+                view.hideLoading()
+                view.showNoConnection()
             }
         }
     }
@@ -49,18 +49,13 @@ class MatchListPresenter(
     fun getNextMatch(id: String) {
         view.showLoading()
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 data = gson.fromJson(
-                    apiRepository.doRequest(SportsApi.getNextMatch(id)),
+                    apiRepository.doRequestAsync(SportsApi.getNextMatch(id)).await(),
                     MatchResponse::class.java
                 )
-            } catch (e: UnknownHostException) {
-                Log.d("Presenter Connection", "$e")
-                view.hideLoading()
-            }
 
-            uiThread {
                 try {
                     view.hideLoading()
                     data.events?.let { event -> view.showMatchList(event) }
@@ -69,6 +64,11 @@ class MatchListPresenter(
                     view.hideLoading()
                     view.showNoData()
                 }
+            } catch (e: UnknownHostException) {
+                Log.d("Presenter Connection", "$e")
+                view.hideLoading()
+                view.showNoConnection()
+                Log.d("Presenter", "MatchList: No Connection")
             }
         }
     }
@@ -77,19 +77,13 @@ class MatchListPresenter(
         view.showLoading()
         Log.d("Presenter", e)
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 dataSearch = gson.fromJson(
-                    apiRepository.doRequest(SportsApi.searchMatch(e)),
+                    apiRepository.doRequestAsync(SportsApi.searchMatch(e)).await(),
                     SearchResponse::class.java
                 )
-            } catch (e: UnknownHostException) {
-                Log.d("Presenter Connection", "$e")
-                view.hideLoading()
-            }
-            Log.d("Presenter", "doAsync finish")
 
-            uiThread {
                 try {
                     view.hideLoading()
                     view.showMatchList(dataSearch.event)
@@ -99,7 +93,12 @@ class MatchListPresenter(
                     view.hideLoading()
                     view.showNoData()
                 }
+            } catch (e: UnknownHostException) {
+                Log.d("Presenter Connection", "$e")
+                view.hideLoading()
+                view.showNoConnection()
             }
+            Log.d("Presenter", "doAsync finish")
         }
     }
 

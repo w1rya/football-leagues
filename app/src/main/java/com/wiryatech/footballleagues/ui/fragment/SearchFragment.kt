@@ -87,6 +87,15 @@ class SearchFragment : Fragment(), MatchListView {
     }
 
     override fun showNoData() {
+        iv_error.setImageResource(R.drawable.no_data)
+        tv_error.text = getString(R.string.no_data)
+        iv_error.visible()
+        tv_error.visible()
+    }
+
+    override fun showNoConnection() {
+        iv_error.setImageResource(R.drawable.no_signal)
+        tv_error.text = getString(R.string.no_connection)
         iv_error.visible()
         tv_error.visible()
     }

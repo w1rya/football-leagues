@@ -11,12 +11,13 @@ import com.wiryatech.footballleagues.db.Favorite
 import com.wiryatech.footballleagues.db.db
 import com.wiryatech.footballleagues.models.DetailMatch
 import com.wiryatech.footballleagues.models.DetailMatchResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import java.net.UnknownHostException
 
 class MatchDetailPresenter(
@@ -31,18 +32,13 @@ class MatchDetailPresenter(
     fun getMatchDetail(id: String) {
         view.showLoading()
 
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
             try {
                 data = gson.fromJson(
-                    apiRepository.doRequest(SportsApi.getMatchDetail(id)),
+                    apiRepository.doRequestAsync(SportsApi.getMatchDetail(id)).await(),
                     DetailMatchResponse::class.java
                 )
-            } catch (e: UnknownHostException) {
-                Log.d("Presenter Connection", "$e")
-                view.hideLoading()
-            }
 
-            uiThread {
                 try {
                     view.hideLoading()
                     view.showMatchDetail(data.events)
@@ -50,7 +46,11 @@ class MatchDetailPresenter(
                     Log.d("Presenter", "$e")
                     view.hideLoading()
                 }
+            } catch (e: UnknownHostException) {
+                Log.d("Presenter Connection", "$e")
+                view.hideLoading()
             }
+
         }
     }
 

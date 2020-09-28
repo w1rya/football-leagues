@@ -18,6 +18,9 @@ import com.wiryatech.footballleagues.ui.activities.MatchActivity
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_prev_match.*
+import kotlinx.android.synthetic.main.fragment_prev_match.iv_error
+import kotlinx.android.synthetic.main.fragment_prev_match.swipeRefresh
+import kotlinx.android.synthetic.main.fragment_prev_match.tv_error
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
 
@@ -79,6 +82,7 @@ class PrevMatchFragment : Fragment(), MatchListView {
 
     override fun hideLoading() {
         progressBarPrev.invisible()
+        swipeRefresh.isRefreshing = false
     }
 
     override fun showMatchList(data: List<Match>) {
@@ -91,6 +95,17 @@ class PrevMatchFragment : Fragment(), MatchListView {
     }
 
     override fun showNoData() {
+        swipeRefresh.isRefreshing = false
+        iv_error.setImageResource(R.drawable.no_data)
+        tv_error.text = getString(R.string.no_data)
+        iv_error.visible()
+        tv_error.visible()
+    }
+
+    override fun showNoConnection() {
+        swipeRefresh.isRefreshing = false
+        iv_error.setImageResource(R.drawable.no_signal)
+        tv_error.text = getString(R.string.no_connection)
         iv_error.visible()
         tv_error.visible()
     }

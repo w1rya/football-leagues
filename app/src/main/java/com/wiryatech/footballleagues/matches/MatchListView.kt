@@ -7,4 +7,5 @@ interface MatchListView {
     fun hideLoading()
     fun showMatchList(data: List<Match>)
     fun showNoData()
+    fun showNoConnection()
 }

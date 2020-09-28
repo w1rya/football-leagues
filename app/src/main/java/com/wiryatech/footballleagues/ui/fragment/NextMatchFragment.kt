@@ -75,6 +75,7 @@ class NextMatchFragment : Fragment(), MatchListView {
 
     override fun hideLoading() {
         progressBarNext.invisible()
+        swipeRefresh.isRefreshing = false
     }
 
     override fun showMatchList(data: List<Match>) {
@@ -87,6 +88,17 @@ class NextMatchFragment : Fragment(), MatchListView {
     }
 
     override fun showNoData() {
+        swipeRefresh.isRefreshing = false
+        iv_error.setImageResource(R.drawable.no_signal)
+        tv_error.text = getString(R.string.no_data)
+        iv_error.visible()
+        tv_error.visible()
+    }
+
+    override fun showNoConnection() {
+        swipeRefresh.isRefreshing = false
+        iv_error.setImageResource(R.drawable.no_signal)
+        tv_error.text = getString(R.string.no_connection)
         iv_error.visible()
         tv_error.visible()
     }
