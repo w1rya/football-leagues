@@ -6,7 +6,6 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
 import com.wiryatech.footballleagues.models.LeagueResponse
 import com.wiryatech.footballleagues.utils.CoroutineContextProvider
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException

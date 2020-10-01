@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Football Leagues</string>
+    <string name="home">Beranda</string>
+    <string name="search">Cari</string>
+    <string name="league_badge">Lencana Liga</string>
+    <string name="league_name">Nama Liga</string>
+    <string name="back_button">Kembali</string>
+    <string name="country">Negara</string>
+    <string name="formed_year">Tahun Dibentuk</string>
+    <string name="_1999">1999</string>
+    <string name="vs">VS</string>
+    <string name="no_score">–</string>
+    <string name="home_team">Tim Kandang</string>
+    <string name="away_team">Tim Tandang</string>
+    <string name="season">2020–2021</string>
+    <string name="venue">Stadion</string>
+    <string name="prev_match">PERTANDINGAN TERAKHIR</string>
+    <string name="next_match">PERTANDINGAN BERIKUTNYA</string>
+    <string name="match">PERTANDINGAN</string>
+    <string name="standing">KLASEMEN</string>
+    <string name="teams">TIM</string>
+    <string name="search_hint">Cari pertandingan atau tim</string>
+    <string name="no_connection">Tidak Ada Koneksi</string>
+    <string name="no_data">Data Tidak Ditemukan</string>
+    <string name="add_fav">Ditambahkan ke Favorit</string>
+    <string name="del_fav">Dihapus dari Favorit</string>
+    <string name="sport">Olahraga</string>
+    <string name="gender">Gender</string>
+    <string name="league">Liga</string>
+    <string name="history">Sejarah</string>
+    <string name="capacity">Kapasitas</string>
+    <string name="location">Lokasi</string>
+    <string name="attribute">Atribut</string>
+    <string name="jersey">Jersey</string>
+    <string name="banner">Panji</string>
+
+    <string name="match_thumbnail">Pratinjau Pertandingan</string>
+    <string name="event">Acara</string>
+    <string name="date">2020–09–21</string>
+    <string name="goal_scorer">Pencetak Gol</string>
+    <string name="red_card">Kartu Merah</string>
+    <string name="yellow_card">Kartu Kuning</string>
+    <string name="formation">Formasi</string>
+    <string name="favorite">Favorit</string>
+    <string name="first_match">Tanding Awal</string>
+    <string name="index">20</string>
+    <string name="no">No</string>
+    <string name="team">Tim</string>
+    <string name="mp">M</string>
+    <string name="w">M</string>
+    <string name="d">S</string>
+    <string name="l">K</string>
+    <string name="gd">SG</string>
+    <string name="pts">Poin</string>
+    <string name="team_badge">Lencana Tim</string>
+</resources>

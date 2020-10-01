@@ -7,6 +7,18 @@
     android:background="@color/colorWhite"
     tools:context=".ui.fragment.HomeFragment">
 
+    <ImageButton
+        android:id="@+id/btn_lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_round_language_24"
+        android:contentDescription="@string/favorite" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

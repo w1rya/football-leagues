@@ -1,6 +1,8 @@
 package com.wiryatech.footballleagues.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +55,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun initUI() {
+        btn_lang.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+
         rv_league.layoutManager = GridLayoutManager(context, 2)
         rv_league.adapter = context?.let {
             GridLeagueAdapter(it, leagues) {item ->

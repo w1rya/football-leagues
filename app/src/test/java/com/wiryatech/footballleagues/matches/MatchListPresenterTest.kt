@@ -6,7 +6,6 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.models.Match
 import com.wiryatech.footballleagues.models.MatchResponse
 import com.wiryatech.footballleagues.models.SearchMatchResponse
-import com.wiryatech.footballleagues.search.SearchPresenter
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -20,9 +19,7 @@ class MatchListPresenterTest {
 
     private var matches = mutableListOf<Match>()
     private var matchResponse = MatchResponse(matches)
-    private val searchResponse = SearchMatchResponse(matches)
     private val id = "4328"
-    private val e = "Man United"
 
     private lateinit var matchPresenter: MatchListPresenter
 
