@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
 import com.wiryatech.footballleagues.models.StandingResponse
+import com.wiryatech.footballleagues.utils.Constants
 import com.wiryatech.footballleagues.utils.CoroutineContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,18 +29,15 @@ class StandingPresenter(
                     apiRepository.doRequestAsync(SportsApi.getStanding(id)).await(),
                     StandingResponse::class.java
                 )
-
-                try {
-                    view.hideLoading()
-                    view.showStanding(data.table)
-                } catch (e: UninitializedPropertyAccessException) {
-                    Log.d("Presenter", "$e")
-                    view.hideLoading()
-                }
+                view.hideLoading()
+                view.showStanding(data.table)
             } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
-                view.showNoConnection()
+                view.showError(Constants.NO_CONNECTION)
                 Log.d("Presenter", "getLeagueDetail: No Connection")
+            } catch (e: NullPointerException) {
+                view.hideLoading()
+                view.showError(Constants.STANDING_NULL)
             }
         }
     }

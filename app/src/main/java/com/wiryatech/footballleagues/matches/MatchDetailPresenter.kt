@@ -7,12 +7,11 @@ import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
-import com.wiryatech.footballleagues.db.Favorite
+import com.wiryatech.footballleagues.db.FavoriteMatch
 import com.wiryatech.footballleagues.db.db
 import com.wiryatech.footballleagues.models.DetailMatch
 import com.wiryatech.footballleagues.models.DetailMatchResponse
 import com.wiryatech.footballleagues.utils.CoroutineContextProvider
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.jetbrains.anko.db.classParser
@@ -59,9 +58,9 @@ class MatchDetailPresenter(
     fun setFavState(context: Context, id: String): Boolean {
         try {
             context.db.use {
-                val result = select(Favorite.TABLE_FAVORITE)
+                val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
                     .whereArgs("(EVENT_ID = {id})", "id" to id)
-                val favorite = result.parseList(classParser<Favorite>())
+                val favorite = result.parseList(classParser<FavoriteMatch>())
                 if (favorite.isNotEmpty()) state = true
             }
         } catch (e: SQLiteConstraintException) {
@@ -74,11 +73,11 @@ class MatchDetailPresenter(
         try {
             context.db.use {
                 insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.EVENT_ID to match.idEvent,
-                    Favorite.EVENT_NAME to match.strEvent,
-                    Favorite.EVENT_DATE to match.dateEvent,
-                    Favorite.LEAGUE_NAME to match.strLeague
+                    FavoriteMatch.TABLE_FAVORITE_MATCH,
+                    FavoriteMatch.EVENT_ID to match.idEvent,
+                    FavoriteMatch.EVENT_NAME to match.strEvent,
+                    FavoriteMatch.EVENT_DATE to match.dateEvent,
+                    FavoriteMatch.LEAGUE_NAME to match.strLeague
                 )
             }
             view.showSnackBar(context.getString(R.string.add_fav))
@@ -91,7 +90,7 @@ class MatchDetailPresenter(
         try {
             context.db.use {
                 delete(
-                    Favorite.TABLE_FAVORITE,
+                    FavoriteMatch.TABLE_FAVORITE_MATCH,
                     "(EVENT_ID = {id})",
                     "id" to id
                 )

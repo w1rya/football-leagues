@@ -1,10 +1,8 @@
 package com.wiryatech.footballleagues.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import coil.size.Scale
 import coil.transform.RoundedCornersTransformation
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
@@ -12,8 +10,11 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.models.Team
 import com.wiryatech.footballleagues.teams.TeamsPresenter
 import com.wiryatech.footballleagues.teams.TeamsView
-import com.wiryatech.footballleagues.utils.*
+import com.wiryatech.footballleagues.utils.invisible
+import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.activity_team.*
+import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.design.snackbar
 
 class TeamActivity : AppCompatActivity(), TeamsView {
 
@@ -38,15 +39,47 @@ class TeamActivity : AppCompatActivity(), TeamsView {
         intent.getStringExtra(EXTRA_TEAM)?.let {
             idTeam = it
             presenter.getDetail(idTeam)
-            Log.d("Presenter", "Send $idTeam to Presenter")
         }
 
+        setFavState()
         initUI()
+
+        swipeRefresh.setOnRefreshListener {
+            presenter.getDetail(idTeam)
+        }
     }
 
     private fun initUI() {
         btn_back.setOnClickListener {
             super.onBackPressed()
+        }
+
+        setFavIcon()
+
+        btn_fav.setOnClickListener {
+            if (isFavorite) delFromFav() else addToFav()
+            isFavorite = !isFavorite
+            setFavIcon()
+        }
+    }
+
+    private fun setFavState() {
+        isFavorite = presenter.setFavState(this, idTeam)
+    }
+
+    private fun addToFav() {
+        presenter.addToFav(this, team)
+    }
+
+    private fun delFromFav() {
+        presenter.delFromFav(this, idTeam)
+    }
+
+    private fun setFavIcon() {
+        if (isFavorite) {
+            btn_fav.setImageResource(R.drawable.ic_round_star_24_fill)
+        } else {
+            btn_fav.setImageResource(R.drawable.ic_round_star_24_border)
         }
     }
 
@@ -59,11 +92,32 @@ class TeamActivity : AppCompatActivity(), TeamsView {
     }
 
     override fun showTeamList(data: List<Team>) {
+        swipeRefresh.isRefreshing = false
+
         data[0].let { result ->
+            team = Team(
+                result.idTeam,
+                result.strTeam,
+                result.strDescriptionEN,
+                result.strTeamBadge,
+                result.intFormedYear,
+                result.strSport,
+                result.strLeague,
+                result.strGender,
+                result.strCountry,
+                result.strStadium,
+                result.strTeamJersey,
+                result.strTeamBanner,
+                result.strStadiumThumb,
+                result.strStadiumLocation,
+                result.intStadiumCapacity
+            )
+
             result.strTeamBadge.let { iv_team.load(it) }
             tv_name.text = result.strTeam
             tv_sport.text = result.strSport
             tv_gender.text = result.strGender
+            tv_league.text = result.strLeague
             tv_country.text = result.strCountry
             tv_year.text = result.intFormedYear.toString()
             tv_desc.text = result.strDescriptionEN
@@ -90,7 +144,12 @@ class TeamActivity : AppCompatActivity(), TeamsView {
         }
     }
 
+    override fun showSnackBar(message: String) {
+        swipeRefresh.snackbar(message).show()
+    }
+
     override fun showNoConnection() {
-        // Nothing to do here yet
+        swipeRefresh.isRefreshing = false
+        swipeRefresh.longSnackbar(R.string.no_connection).show()
     }
 }

@@ -2,10 +2,10 @@ package com.wiryatech.footballleagues.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
@@ -14,9 +14,10 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.models.Standing
 import com.wiryatech.footballleagues.standing.StandingPresenter
 import com.wiryatech.footballleagues.standing.StandingView
-import com.wiryatech.footballleagues.utils.*
+import com.wiryatech.footballleagues.utils.Constants
+import com.wiryatech.footballleagues.utils.invisible
+import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_standing.*
-import org.jetbrains.anko.toast
 
 class StandingFragment : Fragment(), StandingView {
 
@@ -80,10 +81,27 @@ class StandingFragment : Fragment(), StandingView {
         standingAdapter.notifyDataSetChanged()
     }
 
-    override fun showNoConnection() {
+    override fun showError(code: Int) {
+        rv_standing.invisible()
+
+        when (code) {
+            Constants.NO_CONNECTION -> showNoConnection()
+            Constants.STANDING_NULL -> showNoData()
+        }
+    }
+
+    private fun showNoConnection() {
         swipeRefresh.isRefreshing = false
         iv_error.setImageResource(R.drawable.ic_no_signal)
         tv_error.text = getString(R.string.no_connection)
+        iv_error.visible()
+        tv_error.visible()
+    }
+
+    private fun showNoData() {
+        swipeRefresh.isRefreshing = false
+        iv_error.setImageResource(R.drawable.ic_no_data)
+        tv_error.text = getString(R.string.no_data)
         iv_error.visible()
         tv_error.visible()
     }

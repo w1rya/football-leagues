@@ -114,7 +114,7 @@ class MatchFragment : Fragment(), MatchListView {
     }
 
     override fun showError(code: Int) {
-        when(code) {
+        when (code) {
             Constants.PREV_MATCH_NULL -> showNoPrevMatch()
             Constants.NEXT_MATCH_NULL -> showNoNextMatch()
             Constants.NO_CONNECTION -> showNoConnection()

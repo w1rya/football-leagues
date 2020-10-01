@@ -6,5 +6,5 @@ interface StandingView {
     fun showLoading()
     fun hideLoading()
     fun showStanding(data: List<Standing>)
-    fun showNoConnection()
+    fun showError(code: Int)
 }

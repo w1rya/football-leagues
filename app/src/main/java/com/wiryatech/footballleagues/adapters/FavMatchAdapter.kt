@@ -5,22 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.wiryatech.footballleagues.R
-import com.wiryatech.footballleagues.db.Favorite
+import com.wiryatech.footballleagues.db.FavoriteMatch
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_fav_match.view.*
 
-class FavoriteAdapter(
-    private val favorites: List<Favorite>,
-    private val listener: (Favorite) -> Unit
-) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavMatchAdapter(
+    private val favoriteMatches: List<FavoriteMatch>,
+    private val listener: (FavoriteMatch) -> Unit
+) : RecyclerView.Adapter<FavMatchAdapter.ViewHolder>() {
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindFav(favorite: Favorite, listener: (Favorite) -> Unit) {
-            itemView.tv_league.text = favorite.leagueName
-            itemView.tv_event.text = favorite.eventName
-            itemView.tv_date.text = favorite.eventDate
+        fun bindFav(favoriteMatch: FavoriteMatch, listener: (FavoriteMatch) -> Unit) {
+            itemView.tv_league.text = favoriteMatch.leagueName
+            itemView.tv_event.text = favoriteMatch.eventName
+            itemView.tv_date.text = favoriteMatch.eventDate
 
-            itemView.setOnClickListener { listener(favorite) }
+            itemView.setOnClickListener { listener(favoriteMatch) }
         }
     }
 
@@ -32,8 +32,8 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindFav(favorites[position], listener)
+        holder.bindFav(favoriteMatches[position], listener)
     }
 
-    override fun getItemCount(): Int = favorites.size
+    override fun getItemCount(): Int = favoriteMatches.size
 }

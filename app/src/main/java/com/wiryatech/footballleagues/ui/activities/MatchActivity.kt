@@ -48,7 +48,6 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
 
         swipeRefresh.setOnRefreshListener {
             presenter.getMatchDetail(idEvent)
-            Log.d("SwipeRefresh", idEvent)
         }
     }
 

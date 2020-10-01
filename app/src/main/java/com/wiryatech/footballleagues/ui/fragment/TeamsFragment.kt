@@ -85,6 +85,10 @@ class TeamsFragment : Fragment(), TeamsView {
         teamsAdapter.notifyDataSetChanged()
     }
 
+    override fun showSnackBar(message: String) {
+        // none
+    }
+
     override fun showNoConnection() {
         swipeRefresh.isRefreshing = false
         iv_error.setImageResource(R.drawable.ic_no_signal)

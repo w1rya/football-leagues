@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.ui.fragment.*
 
-class SectionsPagerAdapter(private val mContext: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(
+class SectionsPagerAdapter(private val context: Context, fragmentManager: FragmentManager) : FragmentPagerAdapter(
     fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
 
@@ -53,7 +53,7 @@ class SectionsPagerAdapter(private val mContext: Context, fragmentManager: Fragm
         return fragment as Fragment
     }
 
-    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(tabTitles[position])
+    override fun getPageTitle(position: Int): CharSequence? = context.resources.getString(tabTitles[position])
 
     override fun getCount(): Int = tabTitles.size
 

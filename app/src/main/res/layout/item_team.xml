@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/mu"
+        tools:srcCompat="@drawable/mu"
         android:contentDescription="@string/team_badge" />
 
     <TextView

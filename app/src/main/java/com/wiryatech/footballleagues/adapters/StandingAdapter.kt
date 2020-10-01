@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.wiryatech.footballleagues.R
+import com.wiryatech.footballleagues.R.*
 import com.wiryatech.footballleagues.models.Standing
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_standing.view.*
@@ -15,6 +15,9 @@ class StandingAdapter(
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindStanding(standing: Standing) {
+            if (((adapterPosition + 1) % 2) != 0) {
+                itemView.setBackgroundResource(drawable.shape_standing)
+            }
             itemView.tv_position.text = (adapterPosition + 1).toString()
             itemView.tv_team.text = standing.name
             itemView.tv_played.text = standing.played.toString()
@@ -30,7 +33,7 @@ class StandingAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_standing, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(layout.item_standing, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

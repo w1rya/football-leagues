@@ -6,5 +6,6 @@ interface TeamsView {
     fun showLoading()
     fun hideLoading()
     fun showTeamList(data: List<Team>)
+    fun showSnackBar(message: String)
     fun showNoConnection()
 }
