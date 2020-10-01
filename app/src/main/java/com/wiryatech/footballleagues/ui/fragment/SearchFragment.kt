@@ -10,22 +10,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.adapters.MatchAdapter
+import com.wiryatech.footballleagues.adapters.TeamsAdapter
 import com.wiryatech.footballleagues.api.ApiRepository
-import com.wiryatech.footballleagues.matches.MatchListPresenter
-import com.wiryatech.footballleagues.matches.MatchListView
 import com.wiryatech.footballleagues.models.Match
+import com.wiryatech.footballleagues.models.Team
+import com.wiryatech.footballleagues.search.SearchPresenter
+import com.wiryatech.footballleagues.search.SearchesView
 import com.wiryatech.footballleagues.ui.activities.MatchActivity
+import com.wiryatech.footballleagues.ui.activities.TeamActivity
+import com.wiryatech.footballleagues.utils.Constants
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.toast
 
-class SearchFragment : Fragment(), MatchListView {
+class SearchFragment : Fragment(), SearchesView {
 
     private var matches: MutableList<Match> = mutableListOf()
-    private lateinit var presenter: MatchListPresenter
+    private var teams: MutableList<Team> = mutableListOf()
+    private lateinit var presenter: SearchPresenter
     private lateinit var matchAdapter: MatchAdapter
+    private lateinit var teamsAdapter: TeamsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +49,13 @@ class SearchFragment : Fragment(), MatchListView {
             startActivity<MatchActivity>(MatchActivity.EXTRA_EVENT to it.idEvent)
         }
 
+        teamsAdapter = TeamsAdapter(teams) {
+            startActivity<TeamActivity>(TeamActivity.EXTRA_TEAM to it.idTeam)
+        }
+
         val request = ApiRepository()
         val gson = Gson()
-        presenter = MatchListPresenter(this, request, gson)
+        presenter = SearchPresenter(this, request, gson)
 
         initUI()
     }
@@ -54,6 +64,7 @@ class SearchFragment : Fragment(), MatchListView {
         search.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
+                    presenter.searchMatch(query)
                     presenter.searchMatch(query)
                     return true
                 }
@@ -64,9 +75,14 @@ class SearchFragment : Fragment(), MatchListView {
             })
         }
 
-        rv_search.apply {
-            layoutManager = LinearLayoutManager(context)
+        rv_match.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = matchAdapter
+        }
+
+        rv_teams.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = teamsAdapter
         }
     }
 
@@ -78,26 +94,55 @@ class SearchFragment : Fragment(), MatchListView {
         progressBarSearch.invisible()
     }
 
-    override fun showMatchList(data: List<Match>) {
+    override fun showMatch(data: List<Match>) {
         iv_error.invisible()
         tv_error.invisible()
+
+        tv_match.visible()
+        rv_match.visible()
+
         matches.clear()
         matches.addAll(data)
         matchAdapter.notifyDataSetChanged()
     }
 
-    override fun showNoData() {
-        iv_error.setImageResource(R.drawable.no_data)
+    override fun showTeams(data: List<Team>) {
+        tv_team.visible()
+        rv_teams.visible()
+
+        teams.clear()
+        teams.addAll(data)
+        teamsAdapter.notifyDataSetChanged()
+    }
+
+    override fun showError(code: Int) {
+        tv_team.invisible()
+        tv_match.invisible()
+        hideList()
+
+        when (code) {
+            Constants.SEARCH_NULL -> showNoData()
+            Constants.NO_CONNECTION -> showNoConnection()
+        }
+    }
+
+    private fun showNoData() {
+        iv_error.setImageResource(R.drawable.ic_no_data)
         tv_error.text = getString(R.string.no_data)
         iv_error.visible()
         tv_error.visible()
     }
 
-    override fun showNoConnection() {
-        iv_error.setImageResource(R.drawable.no_signal)
+    private fun showNoConnection() {
+        iv_error.setImageResource(R.drawable.ic_no_signal)
         tv_error.text = getString(R.string.no_connection)
         iv_error.visible()
         tv_error.visible()
+    }
+
+    private fun hideList() {
+        rv_match.invisible()
+        rv_teams.invisible()
     }
 
 }

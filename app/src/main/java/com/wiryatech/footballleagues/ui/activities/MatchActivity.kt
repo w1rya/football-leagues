@@ -1,6 +1,5 @@
 package com.wiryatech.footballleagues.ui.activities
 
-import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -10,22 +9,19 @@ import coil.transform.RoundedCornersTransformation
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.api.ApiRepository
-import com.wiryatech.footballleagues.db.*
 import com.wiryatech.footballleagues.matches.MatchDetailPresenter
 import com.wiryatech.footballleagues.matches.MatchDetailView
 import com.wiryatech.footballleagues.models.DetailMatch
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.activity_match.*
-import kotlinx.android.synthetic.main.activity_match.swipeRefresh
-import org.jetbrains.anko.db.*
 import org.jetbrains.anko.design.snackbar
 
 class MatchActivity : AppCompatActivity(), MatchDetailView {
 
+    private lateinit var idEvent: String
     private lateinit var presenter: MatchDetailPresenter
     private lateinit var match: DetailMatch
-    private lateinit var idEvent: String
 
     private var isFavorite: Boolean = false
 
@@ -45,7 +41,7 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
             idEvent = it
             presenter.getMatchDetail(idEvent)
             Log.d("Presenter", "Send $idEvent to Presenter")
-        }.toString()
+        }
 
         setFavState()
         initUI()

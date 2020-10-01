@@ -1,38 +1,37 @@
-package com.wiryatech.footballleagues.detail
+package com.wiryatech.footballleagues.standing
 
 import android.util.Log
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.api.SportsApi
-import com.wiryatech.footballleagues.models.LeagueResponse
+import com.wiryatech.footballleagues.models.StandingResponse
 import com.wiryatech.footballleagues.utils.CoroutineContextProvider
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 
-class LeagueDetailPresenter(
-    private val view: LeagueDetailView,
+class StandingPresenter(
+    private val view: StandingView,
     private val apiRepository: ApiRepository,
     private val gson: Gson,
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
 
-    private lateinit var data: LeagueResponse
+    private lateinit var data: StandingResponse
 
-    fun getLeagueDetail(id: String) {
+    fun getStanding(id: String) {
         view.showLoading()
 
         GlobalScope.launch(context.main) {
             try {
                 data = gson.fromJson(
-                    apiRepository.doRequestAsync(SportsApi.getLeagueDetail(id)).await(),
-                    LeagueResponse::class.java
+                    apiRepository.doRequestAsync(SportsApi.getStanding(id)).await(),
+                    StandingResponse::class.java
                 )
 
                 try {
                     view.hideLoading()
-                    view.showLeagueDetail(data.leagues)
+                    view.showStanding(data.table)
                 } catch (e: UninitializedPropertyAccessException) {
                     Log.d("Presenter", "$e")
                     view.hideLoading()

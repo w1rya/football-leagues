@@ -11,6 +11,7 @@ import com.wiryatech.footballleagues.db.Favorite
 import com.wiryatech.footballleagues.db.db
 import com.wiryatech.footballleagues.models.DetailMatch
 import com.wiryatech.footballleagues.models.DetailMatchResponse
+import com.wiryatech.footballleagues.utils.CoroutineContextProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,7 +24,8 @@ import java.net.UnknownHostException
 class MatchDetailPresenter(
     private val view: MatchDetailView,
     private val apiRepository: ApiRepository,
-    private val gson: Gson
+    private val gson: Gson,
+    private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
 
     private lateinit var data: DetailMatchResponse
@@ -32,7 +34,7 @@ class MatchDetailPresenter(
     fun getMatchDetail(id: String) {
         view.showLoading()
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(context.main) {
             try {
                 data = gson.fromJson(
                     apiRepository.doRequestAsync(SportsApi.getMatchDetail(id)).await(),

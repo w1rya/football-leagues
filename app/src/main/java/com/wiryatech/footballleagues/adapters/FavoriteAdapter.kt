@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.db.Favorite
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_fav.view.*
+import kotlinx.android.synthetic.main.item_fav_match.view.*
 
 class FavoriteAdapter(
     private val favorites: List<Favorite>,
@@ -28,7 +28,7 @@ class FavoriteAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_fav, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_fav_match, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

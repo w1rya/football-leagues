@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@drawable/shape_league">
+
+    <ImageView
+        android:id="@+id/iv_team"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/mu"
+        android:contentDescription="@string/team_badge" />
+
+    <TextView
+        android:id="@+id/tv_team_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans_bold"
+        tools:text="@string/league_name"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_team"
+        app:layout_constraintTop_toTopOf="@+id/iv_team" />
+
+    <TextView
+        android:id="@+id/tv_team_desc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/open_sans_semibold"
+        tools:text="@string/nav_app_bar_navigate_up_description"
+        android:textColor="@color/colorSoftBlack"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_team"
+        app:layout_constraintEnd_toEndOf="@+id/tv_team_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_team_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_team_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

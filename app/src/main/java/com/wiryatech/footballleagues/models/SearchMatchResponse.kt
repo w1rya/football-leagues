@@ -1,5 +1,5 @@
 package com.wiryatech.footballleagues.models
 
-data class SearchResponse(
+data class SearchMatchResponse(
     val event: List<Match>
 )

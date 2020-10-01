@@ -5,7 +5,7 @@ import com.wiryatech.footballleagues.models.Match
 interface MatchListView {
     fun showLoading()
     fun hideLoading()
-    fun showMatchList(data: List<Match>)
-    fun showNoData()
-    fun showNoConnection()
+    fun showPrevMatch(data: List<Match>)
+    fun showNextMatch(data: List<Match>)
+    fun showError(code: Int)
 }
