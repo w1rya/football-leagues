@@ -4,9 +4,8 @@
     <color name="colorPrimaryDark">#018540</color>
     <color name="colorAccent">#FDA500</color>
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorAlmostWhite">#FCFCFC</color>
-    <color name="colorSoftWhite">#F9F9F9</color>
-    <color name="colorSoftGray">#E6E6E6</color>
-    <color name="colorSoftBlack">#292929</color>
+    <color name="colorSoftWhite">#F8F8F8</color>
+    <color name="colorSoftGray">#D4D4D4</color>
+    <color name="colorSoftBlack">#232323</color>
     <color name="colorSoftRed">#FF392E</color>
 </resources>
