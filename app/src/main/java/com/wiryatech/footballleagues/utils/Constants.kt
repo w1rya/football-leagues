@@ -7,6 +7,7 @@ class Constants {
         const val NEXT_MATCH_NULL = 422
         const val SEARCH_NULL = 430
         const val STANDING_NULL = 440
+        const val ACTIVITY_NULL = 450
         const val NO_CONNECTION = 404
     }
 

@@ -11,6 +11,7 @@ import com.wiryatech.footballleagues.db.FavoriteMatch
 import com.wiryatech.footballleagues.db.db
 import com.wiryatech.footballleagues.models.DetailMatch
 import com.wiryatech.footballleagues.models.DetailMatchResponse
+import com.wiryatech.footballleagues.utils.Constants
 import com.wiryatech.footballleagues.utils.CoroutineContextProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,12 +45,13 @@ class MatchDetailPresenter(
                     view.hideLoading()
                     view.showMatchDetail(data.events)
                 } catch (e: UninitializedPropertyAccessException) {
-                    Log.d("Presenter", "$e")
                     view.hideLoading()
+                    view.showError(Constants.ACTIVITY_NULL)
                 }
             } catch (e: UnknownHostException) {
                 Log.d("Presenter Connection", "$e")
                 view.hideLoading()
+                view.showError(Constants.NO_CONNECTION)
             }
 
         }

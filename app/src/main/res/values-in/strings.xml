@@ -15,14 +15,16 @@
     <string name="away_team">Tim Tandang</string>
     <string name="season">2020–2021</string>
     <string name="venue">Stadion</string>
-    <string name="prev_match">PERTANDINGAN TERAKHIR</string>
-    <string name="next_match">PERTANDINGAN BERIKUTNYA</string>
-    <string name="match">PERTANDINGAN</string>
+    <string name="prev_match">LAGA SEBELUMNYA</string>
+    <string name="next_match">LAGA BERIKUTNYA</string>
+    <string name="match">LAGA</string>
     <string name="standing">KLASEMEN</string>
     <string name="teams">TIM</string>
     <string name="search_hint">Cari pertandingan atau tim</string>
     <string name="no_connection">Tidak Ada Koneksi</string>
     <string name="no_data">Data Tidak Ditemukan</string>
+    <string name="no_match_saved">Tidak Ada Laga Tersimpan</string>
+    <string name="no_team_saved">Tidak Ada Tim Tersimpan</string>
     <string name="add_fav">Ditambahkan ke Favorit</string>
     <string name="del_fav">Dihapus dari Favorit</string>
     <string name="sport">Olahraga</string>
@@ -35,7 +37,7 @@
     <string name="jersey">Jersey</string>
     <string name="banner">Panji</string>
 
-    <string name="match_thumbnail">Pratinjau Pertandingan</string>
+    <string name="match_thumbnail">Pratinjau Laga</string>
     <string name="event">Acara</string>
     <string name="date">2020–09–21</string>
     <string name="goal_scorer">Pencetak Gol</string>
@@ -43,7 +45,7 @@
     <string name="yellow_card">Kartu Kuning</string>
     <string name="formation">Formasi</string>
     <string name="favorite">Favorit</string>
-    <string name="first_match">Tanding Awal</string>
+    <string name="first_match">Laga Perdana</string>
     <string name="index">20</string>
     <string name="no">No</string>
     <string name="team">Tim</string>

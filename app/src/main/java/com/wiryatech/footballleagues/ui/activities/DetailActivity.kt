@@ -78,7 +78,6 @@ class DetailActivity : AppCompatActivity(), LeagueDetailView {
     override fun showNoConnection() {
         progressBar.invisible()
         tv_error.visible()
-        Log.d("Presenter", "showNoConnection: ")
     }
 
 }

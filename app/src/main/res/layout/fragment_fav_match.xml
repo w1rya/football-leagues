@@ -27,6 +27,34 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/item_fav_match"/>
 
+        <ImageView
+            android:id="@+id/iv_error"
+            android:background="@android:color/transparent"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/no_match_saved"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_no_fav" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="@string/no_match_saved"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_error"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

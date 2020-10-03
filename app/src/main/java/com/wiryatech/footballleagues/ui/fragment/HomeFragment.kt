@@ -61,9 +61,8 @@ class HomeFragment : Fragment() {
 
         rv_league.layoutManager = GridLayoutManager(context, 2)
         rv_league.adapter = context?.let {
-            GridLeagueAdapter(it, leagues) {item ->
-                val league = League(item.idLeague, item.strLeague, item.badge)
-                startActivity<DetailActivity>(DetailActivity.EXTRA_LEAGUE to league)
+            GridLeagueAdapter(it, leagues) { item ->
+                startActivity<DetailActivity>(DetailActivity.EXTRA_LEAGUE to item)
             }
         }
     }

@@ -11,6 +11,7 @@ import com.wiryatech.footballleagues.adapters.FavMatchAdapter
 import com.wiryatech.footballleagues.db.FavoriteMatch
 import com.wiryatech.footballleagues.db.db
 import com.wiryatech.footballleagues.ui.activities.MatchActivity
+import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_fav_match.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -62,9 +63,17 @@ class FavMatchFragment : Fragment() {
         favoriteMatches.clear()
         context?.db?.use {
             swipeRefresh.isRefreshing = false
+
             val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
             val favorite = result.parseList(classParser<FavoriteMatch>())
-            favoriteMatches.addAll(favorite)
+
+            if (favorite.isNullOrEmpty()) {
+                iv_error.visible()
+                tv_error.visible()
+            } else {
+                favoriteMatches.addAll(favorite)
+            }
+
             favAdapter.notifyDataSetChanged()
         }
     }

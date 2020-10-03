@@ -18,7 +18,6 @@ class SearchPresenter(
     private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
 
-
     private lateinit var dataMatch: SearchMatchResponse
     private lateinit var dataTeams: TeamResponse
 

@@ -95,23 +95,7 @@ class TeamActivity : AppCompatActivity(), TeamsView {
         swipeRefresh.isRefreshing = false
 
         data[0].let { result ->
-            team = Team(
-                result.idTeam,
-                result.strTeam,
-                result.strDescriptionEN,
-                result.strTeamBadge,
-                result.intFormedYear,
-                result.strSport,
-                result.strLeague,
-                result.strGender,
-                result.strCountry,
-                result.strStadium,
-                result.strTeamJersey,
-                result.strTeamBanner,
-                result.strStadiumThumb,
-                result.strStadiumLocation,
-                result.intStadiumCapacity
-            )
+            team = result
 
             result.strTeamBadge.let { iv_team.load(it) }
             tv_name.text = result.strTeam

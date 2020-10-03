@@ -12,9 +12,11 @@ import com.wiryatech.footballleagues.api.ApiRepository
 import com.wiryatech.footballleagues.matches.MatchDetailPresenter
 import com.wiryatech.footballleagues.matches.MatchDetailView
 import com.wiryatech.footballleagues.models.DetailMatch
+import com.wiryatech.footballleagues.utils.Constants
 import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.activity_match.*
+import org.jetbrains.anko.design.longSnackbar
 import org.jetbrains.anko.design.snackbar
 
 class MatchActivity : AppCompatActivity(), MatchDetailView {
@@ -101,27 +103,7 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
         swipeRefresh.isRefreshing = false
 
         data[0].let { result ->
-            match = DetailMatch(
-                result.idEvent,
-                result.strThumb,
-                result.strEvent ,
-                result.strLeague,
-                result.strSeason,
-                result.strHomeTeam,
-                result.strAwayTeam,
-                result.intHomeScore,
-                result.intAwayScore,
-                result.strHomeFormation,
-                result.strHomeGoalDetails,
-                result.strHomeRedCards,
-                result.strHomeYellowCards,
-                result.strAwayFormation,
-                result.strAwayGoalDetails,
-                result.strAwayRedCards,
-                result.strAwayYellowCards,
-                result.dateEvent,
-                result.strVenue
-            )
+            match = result
 
             if (result.strThumb != null) {
                 iv_thumb.load(result.strThumb) {
@@ -157,6 +139,23 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
             result.strAwayYellowCards?.let { tv_away_yellow_card.text = it }
             result.strAwayFormation?.let { tv_away_formation.text = it }
         }
+    }
+
+    override fun showError(code: Int) {
+        when (code) {
+            Constants.ACTIVITY_NULL -> showNoData()
+            Constants.NO_CONNECTION -> showNoConnection()
+        }
+    }
+
+    private fun showNoData() {
+        swipeRefresh.isRefreshing = false
+        swipeRefresh.longSnackbar(R.string.no_data).show()
+    }
+
+    private fun showNoConnection() {
+        swipeRefresh.isRefreshing = false
+        swipeRefresh.longSnackbar(R.string.no_connection).show()
     }
 
 }
