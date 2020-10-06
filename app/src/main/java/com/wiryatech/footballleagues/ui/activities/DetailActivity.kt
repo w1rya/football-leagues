@@ -1,7 +1,6 @@
 package com.wiryatech.footballleagues.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.google.gson.Gson

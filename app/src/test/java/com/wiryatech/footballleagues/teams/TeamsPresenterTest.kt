@@ -1,10 +1,10 @@
-package com.wiryatech.footballleagues.matches
+package com.wiryatech.footballleagues.teams
 
 import com.google.gson.Gson
 import com.wiryatech.footballleagues.TestContextProvider
 import com.wiryatech.footballleagues.api.ApiRepository
-import com.wiryatech.footballleagues.models.Match
-import com.wiryatech.footballleagues.models.MatchResponse
+import com.wiryatech.footballleagues.models.Team
+import com.wiryatech.footballleagues.models.TeamResponse
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -14,16 +14,17 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class MatchListPresenterTest {
+class TeamsPresenterTest {
 
-    private var matches = mutableListOf<Match>()
-    private var matchResponse = MatchResponse(matches)
-    private val id = "4328"
+    private val idLeague = "4328"
+    private val idTeam = "133612"
+    private var teams = mutableListOf<Team>()
+    private var teamResponse = TeamResponse(teams)
 
-    private lateinit var matchPresenter: MatchListPresenter
+    private lateinit var teamsPresenter: TeamsPresenter
 
     @Mock
-    private lateinit var view: MatchListView
+    private lateinit var view: TeamsView
 
     @Mock
     private lateinit var gson: Gson
@@ -37,11 +38,11 @@ class MatchListPresenterTest {
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        matchPresenter = MatchListPresenter(view, repository, gson, TestContextProvider())
+        teamsPresenter = TeamsPresenter(view, repository, gson, TestContextProvider())
     }
 
     @Test
-    fun getPrevMatch() {
+    fun getTeamList() {
         runBlocking {
             Mockito.`when`(repository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
@@ -49,18 +50,18 @@ class MatchListPresenterTest {
             Mockito.`when`(
                 gson.fromJson(
                     "",
-                    MatchResponse::class.java
+                    TeamResponse::class.java
                 )
-            ).thenReturn(matchResponse)
+            ).thenReturn(teamResponse)
 
-            matchPresenter.getPrevMatch(id)
+            teamsPresenter.getTeamList(idLeague)
 
-            Mockito.verify(view).showPrevMatch(matches)
+            Mockito.verify(view).showTeamList(teams)
         }
     }
 
     @Test
-    fun getNextMatch() {
+    fun getDetail() {
         runBlocking {
             Mockito.`when`(repository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
@@ -68,14 +69,13 @@ class MatchListPresenterTest {
             Mockito.`when`(
                 gson.fromJson(
                     "",
-                    MatchResponse::class.java
+                    TeamResponse::class.java
                 )
-            ).thenReturn(matchResponse)
+            ).thenReturn(teamResponse)
 
-            matchPresenter.getNextMatch(id)
+            teamsPresenter.getDetail(idTeam)
 
-            Mockito.verify(view).showNextMatch(matches)
+            Mockito.verify(view).showTeamList(teams)
         }
     }
-
 }

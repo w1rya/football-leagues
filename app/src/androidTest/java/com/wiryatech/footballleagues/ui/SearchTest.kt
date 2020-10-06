@@ -73,32 +73,29 @@ class SearchTest {
             )
         ).perform(pressImeActionButton())
 
-        // menampilkan recycler view hasil pencarian
+        /*
+            memberikan jeda 6 detik untuk meload data lalu melakukan klik pada item ke-1 (indeks 0)
+            setelah diklik maka akan masuk ke halaman detail match
+         */
+        Thread.sleep(6000)
+
         val recyclerView = onView(
             Matchers.allOf(
                 withId(rv_match),
                 childAtPosition(
                     ViewMatchers.withClassName(Matchers.`is`("androidx.constraintlayout.widget.ConstraintLayout")),
-                    1
+                    2
                 )
             )
         )
-
-        /*
-            memberikan jeda 3 detik untuk meload data lalu melakukan klik pada item ke-2 (indeks 1),
-            saat saya uji, item yang diklik adalah pertandingan Luton vs Man United
-            setelah diklik maka akan masuk ke halaman detail match
-         */
-        Thread.sleep(3000)
         recyclerView.perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                1,
+                0,
                 click()
             )
         )
 
-        // memberikan jeda 3 detik untuk meload data detail match
-        Thread.sleep(3000)
+        Thread.sleep(5000)
 
         // mengecek tombol favorit dan mengkliknya, baik menyimpan (jika belum disave) ataupun menghapus (jika sudah disave sebelumnya)
         onView(withId(btn_fav)).check(matches(isDisplayed())).perform(click())
@@ -106,7 +103,29 @@ class SearchTest {
         // memberikan jeda 3 detik untuk melihat snackbar tampil dan memastikan dengan mata sendiri bahwa tombol favoritnya benar telah diklik
         Thread.sleep(3000)
 
-        // kembali ke hasil pencarian
+        // kembali ke hasil pencarian dengan tombol imagebutton back
+        val appCompatImageButton = onView(
+            Matchers.allOf(
+                withId(btn_back), ViewMatchers.withContentDescription("Back"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(swipeRefresh),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageButton.perform(click())
+
+        // memberikan jeda untuk mengamati testing
+        Thread.sleep(3000)
+
+        // kembali ke home
+        Espresso.pressBack()
+
+        // keluar aplikasi
         Espresso.pressBack()
     }
 

@@ -49,11 +49,11 @@
                 android:layout_marginStart="16sp"
                 android:fontFamily="@font/open_sans_bold"
                 android:maxLines="1"
-                android:text="@string/league_name"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/btn_back"
-                app:layout_constraintTop_toTopOf="@+id/btn_back" />
+                app:layout_constraintTop_toTopOf="@+id/btn_back"
+                tools:text="@string/league_name" />
 
             <ImageView
                 android:id="@+id/iv_team"
@@ -96,8 +96,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:fontFamily="@font/open_sans_semibold"
-                        tools:text="@string/sport"
-                        android:textColor="@color/colorSoftBlack" />
+                        android:textColor="@color/colorSoftBlack"
+                        tools:text="@string/sport" />
 
                 </LinearLayout>
 
@@ -249,8 +249,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:fontFamily="@font/open_sans_semibold"
-                        tools:text="@string/location"
-                        android:textColor="@color/colorSoftBlack" />
+                        android:textColor="@color/colorSoftBlack"
+                        tools:text="@string/location" />
 
                 </LinearLayout>
 

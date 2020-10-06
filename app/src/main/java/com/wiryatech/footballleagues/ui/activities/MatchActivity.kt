@@ -108,14 +108,14 @@ class MatchActivity : AppCompatActivity(), MatchDetailView {
             if (result.strThumb != null) {
                 iv_thumb.load(result.strThumb) {
                     crossfade(true)
-                    placeholder(R.color.colorPrimary)
-                    transformations(RoundedCornersTransformation(24f), BlurTransformation(this@MatchActivity, 0.50f))
+                    placeholder(R.drawable.shape_score)
+                    transformations(RoundedCornersTransformation(Constants.ROUNDED_RADIUS), BlurTransformation(this@MatchActivity, Constants.BLUR_RADIUS))
                     error(R.drawable.ic_placeholder)
                 }
             } else {
                 iv_thumb.load(R.drawable.ic_placeholder) {
                     crossfade(true)
-                    transformations(RoundedCornersTransformation(24f), BlurTransformation(this@MatchActivity, 0.50f))
+                    transformations(RoundedCornersTransformation(Constants.ROUNDED_RADIUS), BlurTransformation(this@MatchActivity, Constants.BLUR_RADIUS))
                 }
             }
 

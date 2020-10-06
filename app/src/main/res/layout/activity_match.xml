@@ -44,11 +44,11 @@
             android:layout_marginStart="16sp"
             android:fontFamily="@font/open_sans_bold"
             android:maxLines="1"
-            android:text="@string/league_name"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/btn_back"
-            app:layout_constraintTop_toTopOf="@+id/btn_back" />
+            app:layout_constraintTop_toTopOf="@+id/btn_back"
+            tools:text="@string/league_name" />
 
         <ImageView
             android:id="@+id/iv_thumb"
@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            app:srcCompat="@drawable/shape_score" />
+            tools:srcCompat="@drawable/shape_score" />
 
         <TextView
             android:id="@+id/tv_venue"
@@ -70,12 +70,12 @@
             android:layout_margin="16dp"
             android:drawablePadding="6dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="@string/venue"
             android:textColor="@color/colorSoftBlack"
             app:layout_constraintTop_toBottomOf="@id/ll_formation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:drawableStartCompat="@drawable/ic_stadium" />
+            app:drawableStartCompat="@drawable/ic_stadium"
+            tools:text="@string/venue" />
 
         <TextView
             android:id="@+id/tv_season"
@@ -83,11 +83,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/open_sans_semibold"
-            android:text="@string/season"
             android:textColor="@color/colorSoftBlack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_thumb" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_thumb"
+            tools:text="@string/season" />
 
         <TextView
             android:id="@+id/tv_event"
@@ -120,11 +120,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="@string/date"
             android:textColor="@color/colorSoftBlack"
             app:drawableStartCompat="@drawable/ic_round_calendar_today_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_season" />
+            app:layout_constraintTop_toTopOf="@+id/tv_season"
+            tools:text="@string/date" />
 
         <LinearLayout
             android:id="@+id/ll_summary"
@@ -165,10 +165,10 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/home_team"
                     android:textAlignment="center"
                     android:textColor="@color/colorSoftBlack"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="@string/home_team" />
 
             </LinearLayout>
 
@@ -212,10 +212,10 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/away_team"
                     android:textAlignment="center"
                     android:textColor="@color/colorSoftBlack"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="@string/away_team" />
 
             </LinearLayout>
 

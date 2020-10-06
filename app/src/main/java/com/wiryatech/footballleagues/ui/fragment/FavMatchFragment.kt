@@ -9,19 +9,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wiryatech.footballleagues.R
 import com.wiryatech.footballleagues.adapters.FavMatchAdapter
 import com.wiryatech.footballleagues.db.FavoriteMatch
-import com.wiryatech.footballleagues.db.db
+import com.wiryatech.footballleagues.db.FavoriteTeams
+import com.wiryatech.footballleagues.favorite.FavoritePresenter
+import com.wiryatech.footballleagues.favorite.FavoriteView
 import com.wiryatech.footballleagues.ui.activities.MatchActivity
+import com.wiryatech.footballleagues.utils.invisible
 import com.wiryatech.footballleagues.utils.visible
 import kotlinx.android.synthetic.main.fragment_fav_match.*
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.select
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
-class FavMatchFragment : Fragment() {
+class FavMatchFragment : Fragment(), FavoriteView {
 
     private var favoriteMatches: MutableList<FavoriteMatch> = mutableListOf()
     private lateinit var favAdapter: FavMatchAdapter
+    private lateinit var presenter: FavoritePresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,8 @@ class FavMatchFragment : Fragment() {
         favAdapter = FavMatchAdapter(favoriteMatches) {
             startActivity<MatchActivity>(MatchActivity.EXTRA_EVENT to it.eventId)
         }
+
+        presenter = FavoritePresenter(this)
 
         initUI()
         showFavorite()
@@ -61,20 +65,30 @@ class FavMatchFragment : Fragment() {
 
     private fun showFavorite() {
         favoriteMatches.clear()
-        context?.db?.use {
-            swipeRefresh.isRefreshing = false
+        presenter.showFavoriteMatch(requireContext())
+        favAdapter.notifyDataSetChanged()
+    }
 
-            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
-            val favorite = result.parseList(classParser<FavoriteMatch>())
+    override fun showLoading() {
+        progressBar.visible()
+    }
 
-            if (favorite.isNullOrEmpty()) {
-                iv_error.visible()
-                tv_error.visible()
-            } else {
-                favoriteMatches.addAll(favorite)
-            }
+    override fun hideLoading() {
+        swipeRefresh.isRefreshing = false
+        progressBar.invisible()
+    }
 
-            favAdapter.notifyDataSetChanged()
-        }
+    override fun showFavMatch(data: List<FavoriteMatch>) {
+        favoriteMatches.addAll(data)
+    }
+
+    override fun showFavTeams(data: List<FavoriteTeams>) {
+        // not used
+    }
+
+    override fun showNoData() {
+        iv_error.visible()
+        tv_error.visible()
+        favAdapter.notifyDataSetChanged()
     }
 }
