@@ -64,8 +64,8 @@ class SearchFragment : Fragment(), SearchesView {
         search.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    presenter.searchMatch(query)
-                    presenter.searchMatch(query)
+                    presenter.search(query)
+                    presenter.search(query)
                     return true
                 }
 

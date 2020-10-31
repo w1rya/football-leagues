@@ -43,7 +43,7 @@ class SearchPresenterTest {
     }
 
     @Test
-    fun searchMatch() {
+    fun search() {
         runBlocking {
             Mockito.`when`(repository.doRequestAsync(ArgumentMatchers.anyString()))
                 .thenReturn(apiResponse)
@@ -63,7 +63,7 @@ class SearchPresenterTest {
                 )
             ).thenReturn(teamResponse)
 
-            searchPresenter.searchMatch(query)
+            searchPresenter.search(query)
 
             Mockito.verify(view).showMatch(matches)
             Mockito.verify(view).showTeams(teams)

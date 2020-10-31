@@ -21,7 +21,7 @@ class SearchPresenter(
     private lateinit var dataMatch: SearchMatchResponse
     private lateinit var dataTeams: TeamResponse
 
-    fun searchMatch(query: String) {
+    fun search(query: String) {
         view.showLoading()
 
         GlobalScope.launch(context.main) {
