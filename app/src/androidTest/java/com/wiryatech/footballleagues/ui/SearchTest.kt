@@ -3,7 +3,6 @@ package com.wiryatech.footballleagues.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -11,6 +10,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
 import com.wiryatech.footballleagues.R.id.*
 import com.wiryatech.footballleagues.ui.activities.MainActivity
@@ -21,9 +21,8 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class SearchTest {
 
     private val team = "man united"
@@ -77,7 +76,7 @@ class SearchTest {
             memberikan jeda 6 detik untuk meload data lalu melakukan klik pada item ke-1 (indeks 0)
             setelah diklik maka akan masuk ke halaman detail match
          */
-        Thread.sleep(6000)
+        Thread.sleep(5000)
 
         val recyclerView = onView(
             Matchers.allOf(
@@ -123,10 +122,8 @@ class SearchTest {
         Thread.sleep(3000)
 
         // kembali ke home
-        Espresso.pressBack()
+        pressBack()
 
-        // keluar aplikasi
-        Espresso.pressBack()
     }
 
     private fun childAtPosition(
